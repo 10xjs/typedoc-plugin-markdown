@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { Application, NavigationItem, ProjectReflection } from 'typedoc';
+import { Application, NavigationItem, ProjectReflection, TSConfigReader } from 'typedoc';
 import { FrontMatterComponent } from 'typedoc-plugin-markdown/dist/components/front-matter.component';
 
 import { PluginOptions, SidebarOptions } from './types';
@@ -18,6 +18,8 @@ const DEFAULT_PLUGIN_OPTIONS: PluginOptions = {
 const TYPDOC_PLUGIN_NAME = 'typedoc-plugin-markdown';
 
 const app = new Application();
+app.options.addReader(new TSConfigReader());
+
 let done = false;
 
 export const typedocPlugin = (pluginOptions: PluginOptions, ctx: any) => {
